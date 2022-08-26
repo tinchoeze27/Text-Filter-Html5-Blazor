@@ -1,0 +1,42 @@
+﻿@page "/searchSqlite"
+@using BlazorApp2.Data
+
+<h3>SearchSqlite</h3>
+
+<div class="row mt-5">
+    <div class="col-md-5 mx-auto">
+        <div class="small fw-light">search input only (with close X)</div>
+        <div class="input-group">
+            <input class="form-control border" list="productos" type="search" id="example-search-input" @bind=@texto @bind:event="oninput" @onkeydown="buscar" >
+            <datalist id="productos">
+                @{
+                    if (listadoAux != null)
+                    {
+                        foreach (var item in listadoAux)
+                        {
+                            <option value=@item.Codigo> @item.Descripcion </option>
+                        }
+                    }                
+              }
+            </datalist>
+           
+        </div>
+    </div>
+</div>
+
+@code {
+
+    List<productsModel> listadoAux = new List<productsModel>();
+    public string texto { get; set; } = "";
+
+    private void buscar()
+    {
+        if (texto.Length >= 3)
+        {
+            listadoAux = sqlite.productos(texto);          
+        }
+
+        
+    }
+
+}
