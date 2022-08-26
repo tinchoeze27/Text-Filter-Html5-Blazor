@@ -10,7 +10,7 @@ namespace BlazorApp2.Data
         {
             List<productsModel> resultado = new List<productsModel>();
             productsModel p;
-            string st = "select codigo,descripcion from productos where codigo like '" + texto + "%' limit 15";
+            string st = "select codigo,descripcion from productos where codigo like '%" + texto + "%' limit 15";
             using var con = new SqliteConnection(connection);
             con.Open();
             using var cmd = new SqliteCommand(st,con);
