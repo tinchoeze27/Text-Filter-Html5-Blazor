@@ -62,10 +62,10 @@
     border: solid 5px !important;
     border-radius: 30px !important;
     border-color: black !important;
-    font-size: 18px;
+    font-size: 12px;
     margin: 25px;
     transition: 0.4s;
-    text-align:center;
+    text-align: left;
 }
 
 #example-search-input:focus {
@@ -82,9 +82,9 @@
     border: solid 5px !important;
     border-radius: 30px !important;
     border-color: black !important;
-    font-size: 18px;
+    font-size: 12px;
     margin: 25px;
-    text-align: center;
+    text-align: left;
 }
 
 
@@ -100,9 +100,9 @@
     border: solid 5px !important;
     border-radius: 30px !important;
     border-color: black !important;
-    font-size: 18px;
+    font-size: 12px;
     margin: 25px;
-    text-align: center;
+    text-align: left;
 }
 
 
@@ -110,7 +110,7 @@
         border: solid 5px !important;
         border-radius: 30px !important;
         border-color: greenyellow !important;
-        font-size: 18px;
+        font-size: 12px;
         margin: 25px;
     }
 
@@ -118,21 +118,21 @@
 
 #boxLinq {
     margin-top: 10px;
-    width: 250px !important;
+    width: 450px !important;
     height: 300px;
     align-items: center;
 }
 
 #boxSqlite {
     margin-top: 10px;
-    width: 250px !important;
+    width: 450px !important;
     height: 300px;
     align-items: center;
 }
 
 #boxMongodb {
     margin-top: 10px;
-    width: 250px !important;
+    width: 450px !important;
     height: 300px;
     align-items: center;
 }
