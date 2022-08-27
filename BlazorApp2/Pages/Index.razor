@@ -94,7 +94,7 @@
             listadoAux.Clear();
             texto = texto.ToLower();
 
-            var result2 = listado.Where(x => x.Codigo.Contains(texto)).Take(10).ToList();
+            var result2 = listado.Where(x => x.Codigo.ToLower().Contains(texto)).Take(10).ToList();
 
             var result = (from productos in listado
                           where
