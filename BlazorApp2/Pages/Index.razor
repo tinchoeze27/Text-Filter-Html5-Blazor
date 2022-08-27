@@ -1,9 +1,145 @@
 ﻿@page "/"
+@using BlazorApp2.Controllers
+@using BlazorApp2.DB
+@using BlazorApp2.Models
+@using Newtonsoft.Json
+@inject IMongoDB mongo
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Search test and filter</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="container-fluid">
+    <div class="row" id="boxLinq">
+        
+            <div class="small fw-light">This search box uses Linq</div>
+            <div><img src="https://www.xamarinexpert.it/wp-content/uploads/2018/03/LinqInterviewQuestions.png" /> </div>
+            <div class="input-group">
+                <input class="form-control border" list="productos" placeholder="Search here" type="search" id="example-search-input" @bind=@texto @bind:event="oninput" @onkeydown="buscar" @onkeypress="buscar" @onkeyup="buscar" autocomplete="off">
+                <datalist id="productos">
+                    @{
+                        if (listadoAux != null)
+                        {
+                            foreach (var item in listadoAux)
+                            {
+                                <option value=@item.Codigo> @item.Descripcion </option>
+                            }
+                        }
+                    }
+                </datalist>
 
-Welcome to your new app.
+            </div>
+        
+    </div>
+    <div class="row" id="boxSqlite">
+             <div class="small fw-light">This search box uses Sqlite</div>
+            <div><img src="https://img.portalgsti.com.br/OcsHhsi42lFfKiWbY9GVTDliHi8=/200x200/https://www.portalgsti.com.br/media/uploads/community/2016/04/25/sqlite.png" /> </div>
+            <div class="input-group">
+                <input class="form-control border" list="productos2" placeholder="Search here" type="search" id="example-search-input2" @bind:event="oninput" @bind=@texto1 @onkeyup=buscar2 @onkeydown=buscar2 @onkeypress=buscar2>
+                <datalist id="productos2">
+                    @{
+                        if (listadoAux2 != null)
+                        {
+                            foreach (var item in listadoAux2)
+                            {
+                                string resultado = item.Codigo + " - " + item.Descripcion;
+                                <option value=@resultado></option>
+                            }
+                        }
+                    }
+                </datalist>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+            </div>        
+    </div>
+    <div class="row" id="boxMongodb">
+        
+            <div class="small fw-light">This search box uses MongoDB</div>
+            <div><img src="https://norbertoledo.es/feed/img/news/mongo-logo.png" /> </div>
+            <div class="input-group">
+                <input class="form-control border" list="productos3" placeholder="Search here" type="search" id="example-search-input3" @bind:event="oninput" @bind=@texto2 @onkeyup=buscar3 @onkeydown=buscar3 @onkeypress=buscar3>
+                <datalist id="productos3">
+                    @{
+                        if (listadoAux3 != null)
+                        {
+                            foreach (var item in listadoAux3)
+                            {
+                                string resultado = item.Codigo + " - " + item.Descripcion;
+                                <option value=@resultado></option>
+                            }
+                        }
+                    }
+                </datalist>
+
+            </div>
+        
+    </div>
+</div>
+
+@code {
+
+    #region Linq Statement
+    List<productsModel> listado = new List<productsModel>();
+    List<productsModel> listadoAux = new List<productsModel>();
+    public string texto { get; set; } = "";
+    public string texto1 { get; set; } = "";
+    public string texto2 { get; set; } = "";
+
+    protected async override void OnInitialized()
+    {
+        await leerJson();
+    }
+
+    private void buscar()
+    {
+        if (texto.Length >= 3)
+        {
+            listadoAux.Clear();
+            texto = texto.ToLower();
+            var result = (from productos in listado
+                          where
+                         texto.All(f => productos.Codigo.ToLower().Contains(f) /*|| productos.Descripcion.ToLower().Contains(f)*/)
+                          select productos).ToList();
+            listadoAux = result;
+        }
+    }
+
+    private async Task leerJson()
+    {
+        StreamReader r = new StreamReader("123.json");
+        string jsonString = r.ReadToEnd();
+        listado = JsonConvert.DeserializeObject<List<productsModel>>(jsonString).ToList();
+    }
+    #endregion
+
+    #region Sqlite Statement
+
+    List<productsModel> listadoAux2 = new List<productsModel>();
+
+    private void buscar2()
+    {
+        if (string.IsNullOrEmpty(texto1))
+        {
+            return;
+        }
+
+        listadoAux2.Clear();
+        listadoAux2 = sqlite.productos(texto1);
+    }
+
+    #endregion
+
+    #region MongoDB Statement
+
+    List<productsModel> listadoAux3 = new List<productsModel>();
+
+    private void buscar3()
+    {
+        if (string.IsNullOrEmpty(texto2))
+        {
+            return;
+        }
+
+            listadoAux3.Clear();
+            listadoAux3 = mongo.GetItemsMongoDB(texto2);
+        }
+
+    #endregion
+ }

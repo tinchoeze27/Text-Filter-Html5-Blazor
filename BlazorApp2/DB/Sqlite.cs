@@ -1,6 +1,7 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using BlazorApp2.Models;
+using Microsoft.Data.Sqlite;
 
-namespace BlazorApp2.Data
+namespace BlazorApp2.Controllers
 {
     public static class sqlite
     {
@@ -13,7 +14,7 @@ namespace BlazorApp2.Data
             string st = "select codigo,descripcion from productos where codigo like '%" + texto + "%' limit 10";
             using var con = new SqliteConnection(connection);
             con.Open();
-            using var cmd = new SqliteCommand(st,con);
+            using var cmd = new SqliteCommand(st, con);
             SqliteDataReader read = cmd.ExecuteReader();
             while (read.Read())
             {

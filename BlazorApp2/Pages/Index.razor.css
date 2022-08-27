@@ -1,0 +1,151 @@
+﻿body {
+    justify-content:center !important;
+    align-items:center !important;
+}
+
+
+#boxLinq {
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    border-radius:20px !important;
+    border-color: black !important;
+    border: solid 2px;
+    display:grid;
+}
+
+#boxLinq img {
+    width:60%;
+}
+
+
+#boxSqlite {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px !important;
+    border-color: black !important;
+    border: solid 2px;
+    display: flex;
+    flex-direction:column;    
+    padding: 0;
+}
+
+    #boxSqlite img {
+        width: 80px;
+    }
+
+#boxMongodb {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px !important;
+    border-color: black !important;
+    border: solid 2px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+    #boxMongodb img {
+        width: 85px;
+    }
+
+
+.small.fw-light {
+    padding:15px;
+    font-size:20px !important;
+    font-weight:600 !important;
+}
+
+#example-search-input {
+    border: solid 5px !important;
+    border-radius: 30px !important;
+    border-color: black !important;
+    font-size: 18px;
+    margin: 25px;
+    transition: 0.4s;
+    text-align:center;
+}
+
+#example-search-input:focus {
+
+    border:solid 5px !important;
+    border-radius:30px !important;
+    border-color:darkslateblue !important ;
+    font-size:18px;
+    margin: 25px;
+}
+
+
+#example-search-input2 {
+    border: solid 5px !important;
+    border-radius: 30px !important;
+    border-color: black !important;
+    font-size: 18px;
+    margin: 25px;
+    text-align: center;
+}
+
+
+    #example-search-input2:focus {
+        border: solid 5px !important;
+        border-radius: 30px !important;
+        border-color: blueviolet !important;
+        font-size: 18px;
+        margin: 25px;
+    }
+
+#example-search-input3 {
+    border: solid 5px !important;
+    border-radius: 30px !important;
+    border-color: black !important;
+    font-size: 18px;
+    margin: 25px;
+    text-align: center;
+}
+
+
+    #example-search-input3:focus {
+        border: solid 5px !important;
+        border-radius: 30px !important;
+        border-color: greenyellow !important;
+        font-size: 18px;
+        margin: 25px;
+    }
+
+
+
+#boxLinq {
+    margin-top: 10px;
+    width: 250px !important;
+    height: 300px;
+    align-items: center;
+}
+
+#boxSqlite {
+    margin-top: 10px;
+    width: 250px !important;
+    height: 300px;
+    align-items: center;
+}
+
+#boxMongodb {
+    margin-top: 10px;
+    width: 250px !important;
+    height: 300px;
+    align-items: center;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    margin:25px;
+}
+
+

@@ -1,4 +1,4 @@
-using BlazorApp2.Data;
+using BlazorApp2.DB;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,8 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
+//optional
+var mongodbConnection = new conexionDB(builder.Configuration.GetConnectionString("mongodb"));
+builder.Services.AddSingleton(mongodbConnection);
+builder.Services.AddSingleton<IMongoDB,MongoBD>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
