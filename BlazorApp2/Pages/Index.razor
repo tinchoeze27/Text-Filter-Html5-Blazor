@@ -95,7 +95,7 @@
             texto = texto.ToLower();
             var result = (from productos in listado
                           where
-                         texto.All(f => productos.Codigo.ToLower().Contains(f) /*|| productos.Descripcion.ToLower().Contains(f)*/)
+                         texto.All(f => productos.Codigo.ToLower().Take(10).Contains(f))
                           select productos).ToList();
             listadoAux = result;
         }
