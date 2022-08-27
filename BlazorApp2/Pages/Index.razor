@@ -93,11 +93,14 @@
         {
             listadoAux.Clear();
             texto = texto.ToLower();
+
+            var result2 = listado.Where(x => x.Codigo.Contains(texto)).Take(10).ToList();
+
             var result = (from productos in listado
                           where
                          texto.All(f => productos.Codigo.ToLower().Take(10).Contains(f))
                           select productos).ToList();
-            listadoAux = result;
+            listadoAux = result2;
         }
     }
 
