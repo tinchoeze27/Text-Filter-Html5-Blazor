@@ -20,7 +20,8 @@
                         {
                             foreach (var item in listadoAux)
                             {
-                                <option value=@item.Codigo> @item.Descripcion </option>
+                                string resultado = item.Codigo + " - " + item.Descripcion;
+                                <option value=@resultado></option>
                             }
                         }
                     }
