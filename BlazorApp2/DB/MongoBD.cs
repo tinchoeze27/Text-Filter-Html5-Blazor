@@ -20,7 +20,7 @@ namespace BlazorApp2.DB
             var filter = Builders<productsModel>.Filter.Regex("Codigo",new BsonRegularExpression(texto, "i"));
             var cliente = new MongoClient(connectionString);
             var database = cliente.GetDatabase("testdb");
-            var items = database.GetCollection<productsModel>("productos").Find(filter).ToList();
+            var items = database.GetCollection<productsModel>("productos").Find(filter).Limit(10).ToList();
             //var items = database.GetCollection<productsModel>("productos").Find(new BsonDocument { { "Codigo", new BsonDocument { { "$regex", texto + "*i"} }}}).ToList();
             return items;
         }
